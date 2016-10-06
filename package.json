@@ -1,0 +1,51 @@
+{
+  "name": "hapi-hi",
+  "version": "0.0.0",
+  "description": "Status route for your server.",
+  "homepage": "https://github.com/sholladay/hapi-hi",
+  "main": "index.js",
+  "author": {
+    "name": "Seth Holladay",
+    "url": "http://seth-holladay.com",
+    "email": "me@seth-holladay.com"
+  },
+  "scripts": {
+    "test": "xo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sholladay/hapi-hi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sholladay/hapi-hi/issues",
+    "email": "me@seth-holladay.com"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "license": "MPL-2.0",
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "json-align": "^0.1.0",
+    "read-pkg-up": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint-config-tidy": "^0.3.0",
+    "xo": "^0.16.0"
+  },
+  "keywords": [
+    "hapi",
+    "plugin",
+    "health",
+    "status",
+    "heartbeat",
+    "ping",
+    "check",
+    "route"
+  ],
+  "xo": {
+    "extend": "tidy"
+  }
+}
