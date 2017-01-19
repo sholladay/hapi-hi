@@ -14,26 +14,26 @@ const register = (server, option, next) => {
             config : {
                 tags        : ['health', 'status', 'monitor'],
                 description : 'Check if the server is healthy.',
-                auth        : false,
-                handler(request, reply) {
-                    const status = {
-                        appName,
-                        appVersion,
-                        statusCode : 200,
-                        status     : 'OK',
-                        time       : (new Date()).toISOString(),
-                        process    : {
-                            uptime  : process.uptime(),
-                            title   : process.title,
-                            version : process.versions.node,
-                            pid     : process.pid
-                        }
-                    };
+                auth        : false
+            },
+            handler(request, reply) {
+                const status = {
+                    appName,
+                    appVersion,
+                    statusCode : 200,
+                    status     : 'OK',
+                    time       : (new Date()).toISOString(),
+                    process    : {
+                        uptime  : process.uptime(),
+                        title   : process.title,
+                        version : process.versions.node,
+                        pid     : process.pid
+                    }
+                };
 
-                    reply(alignJson(status))
-                    // Inform Hapi that our string is actually valid JSON.
-                    .type('application/json');
-                }
+                reply(alignJson(status))
+                // Inform Hapi that our string is actually valid JSON.
+                .type('application/json');
             }
         });
 
