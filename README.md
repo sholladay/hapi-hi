@@ -25,20 +25,16 @@ const hi = require('hapi-hi');
 Register the plugin on your server.
 
 ```js
-server.register(hi, (err) => {
-    if (err) {
-        throw err;
-    }
-    server.start((err) => {
-        if (err) {
-            throw err;
-        }
-        console.log(server.info.uri + '/status');
+server.register(hi)
+    .then(() => {
+        return server.start();
+    })
+    .then(() => {
+        console.log(server.info.uri);
     });
-});
 ```
 
-Performing a `GET` to `/status` will return a JSON response similar to this:
+Performing a `GET` to `/status` will return a JSON response similar to this.
 
 ```json
 {
