@@ -1,51 +1,55 @@
 {
-  "name": "hapi-hi",
-  "version": "0.1.0",
-  "description": "Status route for your server.",
-  "homepage": "https://github.com/sholladay/hapi-hi",
-  "main": "index.js",
-  "author": {
-    "name": "Seth Holladay",
-    "url": "http://seth-holladay.com",
-    "email": "me@seth-holladay.com"
-  },
-  "scripts": {
-    "test": "xo"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:sholladay/hapi-hi.git"
-  },
-  "bugs": {
-    "url": "https://github.com/sholladay/hapi-hi/issues",
-    "email": "me@seth-holladay.com"
-  },
-  "engines": {
-    "node": ">=7"
-  },
-  "license": "MPL-2.0",
-  "files": [
-    "index.js"
-  ],
-  "dependencies": {
-    "json-align": "^0.1.0",
-    "read-pkg-up": "^1.0.1"
-  },
-  "devDependencies": {
-    "eslint-config-tidy": "^0.4.0",
-    "xo": "^0.17.1"
-  },
-  "keywords": [
-    "hapi",
-    "plugin",
-    "health",
-    "status",
-    "heartbeat",
-    "ping",
-    "check",
-    "route"
-  ],
-  "xo": {
-    "extend": "tidy"
-  }
+    "name": "hapi-hi",
+    "version": "0.1.0",
+    "description": "Status route for your server",
+    "homepage": "https://github.com/sholladay/hapi-hi",
+    "main": "index.js",
+    "author": {
+        "name": "Seth Holladay",
+        "url": "https://seth-holladay.com",
+        "email": "me@seth-holladay.com"
+    },
+    "scripts": {
+        "test": "xo && ava"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:sholladay/hapi-hi.git"
+    },
+    "bugs": {
+        "url": "https://github.com/sholladay/hapi-hi/issues",
+        "email": "me@seth-holladay.com"
+    },
+    "engines": {
+        "node": ">=8"
+    },
+    "license": "MPL-2.0",
+    "files": [
+        "index.js"
+    ],
+    "dependencies": {
+        "json-align": "^0.1.0",
+        "read-pkg-up": "^3.0.0"
+    },
+    "devDependencies": {
+        "ava": "git@github.com:avajs/ava.git#37c9122c50722b06039f1cc2306a7c176fd3c786",
+        "eslint-config-tidy": "^0.5.0",
+        "hapi": "^16.6.2",
+        "xo": "^0.18.0"
+    },
+    "keywords": [
+        "hapi",
+        "plugin",
+        "server",
+        "heartbeat",
+        "ping",
+        "health",
+        "check",
+        "healthcheck",
+        "status",
+        "route"
+    ],
+    "xo": {
+        "extend": "tidy"
+    }
 }
