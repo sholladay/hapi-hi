@@ -1,6 +1,6 @@
 {
     "name": "hapi-hi",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "Status route for your server",
     "homepage": "https://github.com/sholladay/hapi-hi",
     "main": "index.js",
