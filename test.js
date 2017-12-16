@@ -1,6 +1,6 @@
 import test from 'ava';
 import alignJson from 'json-align';
-import { Server } from 'hapi';
+import hapi from 'hapi';
 import pkg from './package';
 import hi from '.';
 
@@ -8,8 +8,8 @@ const mockRoute = (option) => {
     return {
         method : 'GET',
         path   : '/',
-        handler(request, reply) {
-            reply('foo');
+        handler() {
+            return 'foo';
         },
         ...option
     };
@@ -21,8 +21,7 @@ const createServer = async (option) => {
         route  : mockRoute(),
         ...option
     };
-    const server = new Server();
-    server.connection();
+    const server = hapi.server();
     if (plugin) {
         await server.register(plugin);
     }
