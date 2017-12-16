@@ -1,15 +1,20 @@
 'use strict';
 
+const joi = require('joi');
 const alignJson = require('json-align');
 const readPkgUp = require('read-pkg-up');
 
 const register = async (server, option) => {
-    const { pkg } = await readPkgUp({ cwd : option.cwd });
+    const config = joi.attempt(option, joi.object().required().keys({
+        cwd        : joi.string().required(),
+        noConflict : joi.boolean().optional()
+    }));
+    const { pkg } = await readPkgUp({ cwd : config.cwd });
     const { name : appName, version : appVersion } = pkg;
 
     server.route({
         method : 'GET',
-        path   : (option.noConflict ? `/__${appName}` : '') + '/status',
+        path   : (config.noConflict ? `/__${appName}` : '') + '/status',
         config : {
             tags        : ['health', 'status', 'monitor'],
             description : 'Check if the server is healthy',

@@ -16,25 +16,29 @@ npm install hapi-hi --save
 
 ## Usage
 
-Get it into your program.
+Register the plugin on your server to provide the health check endpoint.
 
 ```js
+const hapi = require('hapi');
 const hi = require('hapi-hi');
-```
 
-Register the plugin on your server.
+const server = hapi.server();
 
-```js
-server.register(hi)
-    .then(() => {
-        return server.start();
-    })
-    .then(() => {
-        console.log(server.info.uri);
+const init = async () => {
+    await server.register({
+        plugin  : hi,
+        options : {
+            cwd : __dirname
+        }
     });
+    await server.start();
+    console.log('Server ready:', server.info.uri);
+};
+
+init();
 ```
 
-Performing a `GET` to `/status` will return a JSON response similar to this.
+Visiting `/status` will return a JSON response with app info because of this plugin.
 
 ```json
 {

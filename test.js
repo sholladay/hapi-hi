@@ -17,7 +17,12 @@ const mockRoute = (option) => {
 
 const createServer = async (option) => {
     const { plugin, route } = {
-        plugin : hi,
+        plugin : {
+            plugin  : hi,
+            options : {
+                cwd : __dirname
+            }
+        },
         route  : mockRoute(),
         ...option
     };
