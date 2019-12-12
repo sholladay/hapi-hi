@@ -1,4 +1,4 @@
-# hapi-hi [![Build status for Hapi Hi](https://img.shields.io/circleci/project/sholladay/hapi-hi/master.svg "Build Status")](https://circleci.com/gh/sholladay/hapi-hi "Builds")
+# hapi-hi [![Build status for hapi Hi](https://travis-ci.com/sholladay/hapi-hi.svg?branch=master "Build Status")](https://travis-ci.com/sholladay/hapi-hi "Builds")
 
 > Status route for your server
 
