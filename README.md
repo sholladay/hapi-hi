@@ -2,6 +2,8 @@
 
 > Status route for your server
 
+This [hapi](https://hapijs.com) plugin adds a `GET /status` route to your app so that you can check the health of your service by making an HTTP request.
+
 ## Why?
 
  - Provides useful metrics about your server.
@@ -11,7 +13,7 @@
 ## Install
 
 ```sh
-npm install hapi-hi --save
+npm install hapi-hi
 ```
 
 ## Usage
@@ -19,7 +21,7 @@ npm install hapi-hi --save
 Register the plugin on your server to provide the health check endpoint.
 
 ```js
-const hapi = require('hapi');
+const hapi = require('@hapi/hapi');
 const hi = require('hapi-hi');
 
 const server = hapi.server();
@@ -50,7 +52,7 @@ Visiting `/status` will return a JSON response with app info because of this plu
     "process"    : {
         "uptime"  : 519163.478,
         "title"   : "node /srv/my-project/bin/my-project.js",
-        "version" : "6.3.1",
+        "version" : "12.0.0",
         "pid"     : 23794,
     }
 }
@@ -58,11 +60,17 @@ Visiting `/status` will return a JSON response with app info because of this plu
 
 ## API
 
-### option
+### Routes
+
+#### GET /status
+
+Tags: `health`, `monitor`, `status`
+
+Returns an object that contains properties useful for checking the status of your server, including `appName`, `appVersion`, `statusCode`, `status`, `time`, and a `process` object with details about the Node.js process.
+
+### Plugin options
 
 Type: `object`
-
-Plugin settings.
 
 #### cwd
 

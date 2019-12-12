@@ -1,10 +1,10 @@
 import test from 'ava';
 import alignJson from 'json-align';
-import hapi from 'hapi';
-import pkg from './package';
+import hapi from '@hapi/hapi';
+import pkg from './package.json';
 import hi from '.';
 
-const mockRoute = (option) => {
+const makeRoute = (option) => {
     return {
         method : 'GET',
         path   : '/',
@@ -15,43 +15,29 @@ const mockRoute = (option) => {
     };
 };
 
-const createServer = async (option) => {
-    const { plugin, route } = {
+const makeServer = async (option) => {
+    const { plugin } = {
         plugin : {
             plugin  : hi,
             options : {
                 cwd : __dirname
             }
         },
-        route  : mockRoute(),
         ...option
     };
     const server = hapi.server();
     if (plugin) {
         await server.register(plugin);
     }
-    if (route) {
-        server.route(route);
-    }
     return server;
 };
 
-const mockRequest = (server, option) => {
-    return server.inject({
-        method : 'GET',
-        url    : '/',
-        ...option
-    });
-};
-
 test('without plugin', async (t) => {
-    const server = await createServer({
-        plugin : null
-    });
-    const response = await mockRequest(server, {
-        url : '/status'
-    });
+    const server = await makeServer({ plugin : null });
+    server.route(makeRoute());
+    const response = await server.inject('/status');
     t.is(response.statusCode, 404);
+    t.is(response.headers['content-type'], 'application/json; charset=utf-8');
     t.is(response.payload, JSON.stringify({
         statusCode : 404,
         error      : 'Not Found',
@@ -60,11 +46,10 @@ test('without plugin', async (t) => {
 });
 
 test('provides a status route', async (t) => {
-    const server = await createServer();
-    const response = await mockRequest(server, {
-        url : '/status'
-    });
+    const server = await makeServer();
+    const response = await server.inject('/status');
     t.is(response.statusCode, 200);
+    t.is(response.headers['content-type'], 'application/json; charset=utf-8');
     t.is(typeof response.payload, 'string');
 
     const parsed = JSON.parse(response.payload);
@@ -95,8 +80,10 @@ test('provides a status route', async (t) => {
 });
 
 test('does not affect non-status routes', async (t) => {
-    const server = await createServer();
-    const response = await mockRequest(server);
+    const server = await makeServer();
+    server.route(makeRoute());
+    const response = await server.inject('/');
     t.is(response.statusCode, 200);
+    t.is(response.headers['content-type'], 'text/html; charset=utf-8');
     t.is(response.payload, 'foo');
 });

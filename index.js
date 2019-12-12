@@ -1,6 +1,6 @@
 'use strict';
 
-const joi = require('joi');
+const joi = require('@hapi/joi');
 const alignJson = require('json-align');
 const readPkgUp = require('read-pkg-up');
 
@@ -9,14 +9,14 @@ const register = async (server, option) => {
         cwd        : joi.string().required(),
         noConflict : joi.boolean().optional()
     }));
-    const { pkg } = await readPkgUp({ cwd : config.cwd });
-    const { name : appName, version : appVersion } = pkg;
+    const { packageJson } = await readPkgUp({ cwd : config.cwd });
+    const { name : appName, version : appVersion } = packageJson;
 
     server.route({
         method : 'GET',
         path   : (config.noConflict ? `/__${appName}` : '') + '/status',
         config : {
-            tags        : ['health', 'status', 'monitor'],
+            tags        : ['health', 'monitor', 'status'],
             description : 'Check if the server is healthy',
             auth        : false
         },
@@ -42,5 +42,5 @@ const register = async (server, option) => {
 
 module.exports.plugin = {
     register,
-    pkg : readPkgUp.sync({ cwd : __dirname }).pkg
+    pkg : readPkgUp.sync({ cwd : __dirname }).packageJson
 };
