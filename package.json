@@ -21,22 +21,22 @@
         "email": "me@seth-holladay.com"
     },
     "engines": {
-        "node": ">=10"
+        "node": ">=12"
     },
     "license": "MPL-2.0",
     "files": [
         "index.js"
     ],
     "peerDependencies": {
-        "@hapi/hapi": ">=18"
+        "@hapi/hapi": ">=19"
     },
     "dependencies": {
-        "@hapi/joi": "^16.1.8",
+        "@hapi/joi": "^17.0.2",
         "json-align": "^0.1.0",
         "read-pkg-up": "^7.0.1"
     },
     "devDependencies": {
-        "@hapi/hapi": "^18.4.0",
+        "@hapi/hapi": "^19.0.4",
         "ava": "^2.4.0",
         "eslint-config-tidy": "^0.10.0",
         "xo": "^0.25.3"

@@ -45,6 +45,11 @@ test('without plugin', async (t) => {
     }));
 });
 
+test('server can initialize', async (t) => {
+    const server = await makeServer();
+    await t.notThrowsAsync(server.initialize());
+});
+
 test('provides a status route', async (t) => {
     const server = await makeServer();
     const response = await server.inject('/status');
